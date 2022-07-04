@@ -7,11 +7,11 @@
     tools:context=".DetailUserActivity">
 
     <ImageView
-        android:layout_marginTop="10dp"
         android:id="@+id/idimg_detail"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
@@ -20,10 +20,10 @@
         android:id="@+id/idtv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/idimg_detail"
-        app:layout_constraintStart_toStartOf="@+id/idimg_detail"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idimg_detail"
         tools:text="Name" />
 
@@ -32,7 +32,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        app:layout_constraintEnd_toEndOf="@+id/idtv_name"
         app:layout_constraintStart_toStartOf="@+id/idtv_name"
         app:layout_constraintTop_toBottomOf="@+id/idtv_name"
         tools:text="namelogin" />
@@ -41,19 +40,50 @@
         android:id="@+id/idtv_followers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        tools:text="followers"
-        app:layout_constraintEnd_toStartOf="@+id/idtv_login"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idtv_login" />
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/idtv_following"
+        app:layout_constraintStart_toEndOf="@+id/idtv_following"
+        app:layout_constraintTop_toTopOf="@+id/idtv_following"
+        tools:text="followers" />
 
     <TextView
         android:id="@+id/idtv_following"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        tools:text="following"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/idimg_detail"
+        app:layout_constraintStart_toEndOf="@+id/idimg_detail"
+        app:layout_constraintTop_toTopOf="@+id/idimg_detail"
+        tools:text="following" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/idtablayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#C6C6C6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/idtv_login"
-        app:layout_constraintTop_toBottomOf="@+id/idtv_login" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/idtv_login"
+        app:tabTextColor="@color/black" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/idviewpager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idtablayout" />
+
+    <TextView
+        android:id="@+id/idtv_repository"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/idtv_following"
+        app:layout_constraintTop_toBottomOf="@+id/idtv_following"
+        tools:text="Repository" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

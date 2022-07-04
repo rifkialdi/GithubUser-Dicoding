@@ -18,4 +18,14 @@ interface ApiService {
     fun getSearchUser(
         @Query("q") q: String
     ): Call<ResponseSearch>
+
+    @GET("users/{username}/followers")
+    fun getFollowers(
+        @Path("username") username: String
+    ): Call<List<ResponseItem>>
+
+    @GET("users/{username}/following")
+    fun getFollowing(
+        @Path("username") username: String
+    ): Call<List<ResponseItem>>
 }

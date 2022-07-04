@@ -29,7 +29,7 @@ class ListAdapter(val dataListItem: ArrayList<ResponseItem>) : RecyclerView.Adap
         Glide.with(holder.itemView)
             .load(data.avatarUrl)
             .placeholder(R.drawable.wait)
-            .centerCrop()
+            .circleCrop()
             .into(holder.binding.idimagelist)
         holder.itemView.setOnClickListener {
             Toast.makeText(holder.itemView.context, data.login, Toast.LENGTH_SHORT).show()

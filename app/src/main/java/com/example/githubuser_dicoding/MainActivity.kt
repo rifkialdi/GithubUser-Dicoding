@@ -14,7 +14,6 @@ import com.example.githubuser_dicoding.api.ApiConfig
 import com.example.githubuser_dicoding.api.ResponseItem
 import com.example.githubuser_dicoding.api.ResponseSearch
 import com.example.githubuser_dicoding.databinding.ActivityMainBinding
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         findListUserGithub()
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

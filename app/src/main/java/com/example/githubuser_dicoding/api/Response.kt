@@ -34,7 +34,11 @@ data class ResponseDetail(
 
 	@field:SerializedName("following")
 	val following: String,
+
+	@field:SerializedName("public_repos")
+	val publicRepo: String
 )
+
 data class ResponseSearch(
 	@field:SerializedName("items")
 	val items: List<ResponseItem>
