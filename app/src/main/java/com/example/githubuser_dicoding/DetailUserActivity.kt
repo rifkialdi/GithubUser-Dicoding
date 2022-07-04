@@ -29,6 +29,7 @@ class DetailUserActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.title = getString(R.string.actiontitle)
 
         val dataLogin = intent.getStringExtra("login")!!
 

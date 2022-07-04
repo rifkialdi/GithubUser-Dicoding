@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.title = getString(R.string.actiontitle)
 
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         mainViewModel.findListUser.observe(this) { Responseitem ->
