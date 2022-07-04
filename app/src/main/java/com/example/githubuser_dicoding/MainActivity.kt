@@ -4,21 +4,16 @@ import android.app.SearchManager
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubuser_dicoding.adapter.ListAdapter
-import com.example.githubuser_dicoding.api.ApiConfig
 import com.example.githubuser_dicoding.api.ResponseItem
-import com.example.githubuser_dicoding.api.ResponseSearch
 import com.example.githubuser_dicoding.databinding.ActivityMainBinding
 import com.example.githubuser_dicoding.viewmodel.MainViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,9 +28,11 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         mainViewModel.findListUser.observe(this) { Responseitem ->
+            binding.idprogress.visibility = View.INVISIBLE
             showRecycler(Responseitem)
         }
         mainViewModel.searchListUser.observe(this) { Responsesearch ->
+            binding.idprogress.visibility = View.INVISIBLE
             showRecycler(Responsesearch.items)
         }
 
@@ -49,10 +46,11 @@ class MainActivity : AppCompatActivity() {
         val searchView = menu.findItem(R.id.idsearch).actionView as SearchView
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
-        searchView.queryHint = "Look For People"
+        searchView.queryHint = getString(R.string.queryHint)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 Toast.makeText(this@MainActivity, query, Toast.LENGTH_SHORT).show()
+                binding.idprogress.visibility = View.VISIBLE
                 mainViewModel.findSearchUser(query)
                 searchView.clearFocus()
                 return true

@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/idimg_detail"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,6 +84,15 @@
         app:layout_constraintStart_toStartOf="@+id/idtv_following"
         app:layout_constraintTop_toBottomOf="@+id/idtv_following"
         tools:text="Repository" />
+
+    <ProgressBar
+        android:id="@+id/idprogress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

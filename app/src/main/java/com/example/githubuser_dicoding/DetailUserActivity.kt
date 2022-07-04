@@ -2,22 +2,21 @@ package com.example.githubuser_dicoding
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.annotation.StringRes
+import android.view.View
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
-import com.example.githubuser_dicoding.api.ApiConfig
 import com.example.githubuser_dicoding.api.ResponseDetail
 import com.example.githubuser_dicoding.databinding.ActivityDetailUserBinding
 import com.example.githubuser_dicoding.detailuser.SectionsPagerAdapter
+import com.example.githubuser_dicoding.viewmodel.DetailViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class DetailUserActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailUserBinding
+    private lateinit var detailViewModel: DetailViewModel
 
     companion object {
         private val TAB_TITLES = arrayOf(
@@ -31,10 +30,15 @@ class DetailUserActivity : AppCompatActivity() {
         binding = ActivityDetailUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val dataLogin = intent.getStringExtra("login")
-        binding.idtvLogin.text = dataLogin
+        val dataLogin = intent.getStringExtra("login")!!
 
-        findDetail(dataLogin!!)
+        detailViewModel = ViewModelProvider(this)[DetailViewModel::class.java]
+        detailViewModel.findDetail(dataLogin)
+        detailViewModel.detailInfo.observe(this){ Responsedetail ->
+            binding.idprogress.visibility = View.INVISIBLE
+            detailInfo(Responsedetail)
+        }
+
 
         val sectionPagerAdapter = SectionsPagerAdapter(this)
         val viewPager: ViewPager2 = binding.idviewpager
@@ -45,31 +49,18 @@ class DetailUserActivity : AppCompatActivity() {
         }.attach()
     }
 
-    fun findDetail(username: String) {
-        val retrofit = ApiConfig.getApiService().getDetailUser(username)
-        retrofit.enqueue(object : Callback<ResponseDetail> {
-            override fun onResponse(
-                call: Call<ResponseDetail>,
-                response: Response<ResponseDetail>
-            ) {
-                if (response.isSuccessful) {
-                    val responseBody = response.body()!!
-
-                    binding.idtvName.text = responseBody.name
-                    Glide.with(binding.root)
-                        .load(responseBody.avatarUrl)
-                        .placeholder(R.drawable.wait)
-                        .centerCrop()
-                        .into(binding.idimgDetail)
-                    binding.idtvRepository.text = "Repository : ${responseBody.publicRepo}"
-                    binding.idtvFollowers.text = "Followers : ${responseBody.followers}"
-                    binding.idtvFollowing.text = "Following : ${responseBody.following}"
-                }
-            }
-
-            override fun onFailure(call: Call<ResponseDetail>, t: Throwable) {
-            }
-
-        })
+    fun detailInfo(value : ResponseDetail) {
+        Glide.with(binding.root)
+            .load(value.avatarUrl)
+            .placeholder(R.drawable.wait)
+            .centerCrop()
+            .into(binding.idimgDetail)
+        binding.idtvName.text = value.name
+        binding.idtvLogin.text = value.login
+        binding.idtvRepository.text = "Repository : ${value.publicRepo}"
+        binding.idtvFollowers.text = "Followers : ${value.followers}"
+        binding.idtvFollowing.text = "Following : ${value.following}"
     }
+
+
 }
