@@ -50,7 +50,7 @@ class DetailUserActivity : AppCompatActivity() {
         }.attach()
     }
 
-    fun detailInfo(value : ResponseDetail) {
+    private fun detailInfo(value : ResponseDetail) {
         Glide.with(binding.root)
             .load(value.avatarUrl)
             .placeholder(R.drawable.wait)

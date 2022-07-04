@@ -7,6 +7,7 @@
     tools:context=".DetailUserActivity">
 
     <ImageView
+        android:contentDescription="@string/description_detail_image"
         android:id="@+id/idimg_detail"
         android:layout_width="90dp"
         android:layout_height="90dp"

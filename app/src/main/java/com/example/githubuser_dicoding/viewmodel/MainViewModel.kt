@@ -21,10 +21,10 @@ class MainViewModel : ViewModel() {
         findListUserGithub()
     }
 
-    fun findListUserGithub() {
+    private fun findListUserGithub() {
         val client = ApiConfig.getApiService().getListUser()
         client.enqueue(object : Callback<List<ResponseItem>> {
-            override fun onResponse(call: Call<List<ResponseItem>>, response: retrofit2.Response<List<ResponseItem>>) {
+            override fun onResponse(call: Call<List<ResponseItem>>, response: Response<List<ResponseItem>>) {
                 if (response.isSuccessful) {
                     val responseBody = response.body()!!
                     _findListUser.value = responseBody

@@ -20,7 +20,7 @@ class FollowersFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentFollowersBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -37,7 +37,7 @@ class FollowersFragment : Fragment() {
         }
     }
 
-    fun showRecycler(value: List<ResponseItem>) {
+    private fun showRecycler(value: List<ResponseItem>) {
         val data = arrayListOf<ResponseItem>()
         for (item in value) {
             data.add(ResponseItem(item.login, item.url, item.avatarUrl))

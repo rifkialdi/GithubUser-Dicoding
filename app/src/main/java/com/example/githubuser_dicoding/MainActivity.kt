@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    fun showRecycler(value: List<ResponseItem>) {
+    private fun showRecycler(value: List<ResponseItem>) {
         data = arrayListOf()
         for (item in value) {
             data.add(ResponseItem(item.login, item.url, item.avatarUrl))

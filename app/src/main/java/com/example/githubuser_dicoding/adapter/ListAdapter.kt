@@ -11,7 +11,7 @@ import com.example.githubuser_dicoding.R
 import com.example.githubuser_dicoding.api.ResponseItem
 import com.example.githubuser_dicoding.databinding.ListItemBinding
 
-class ListAdapter(val dataListItem: ArrayList<ResponseItem>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+class ListAdapter(private val dataListItem: ArrayList<ResponseItem>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
 
     inner class ViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root)
